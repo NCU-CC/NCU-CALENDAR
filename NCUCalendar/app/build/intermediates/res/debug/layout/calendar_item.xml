@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ci_ll_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ci_tv_day"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="1"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/C:/Users/KangJhe/AndroidStudioProjects/NCUCalendar/app/src/main/res/layout/calendar_item.xml -->

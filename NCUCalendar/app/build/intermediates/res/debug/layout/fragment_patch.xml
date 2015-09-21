@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="　　若要新增多項活動至NCUCC Calendar中，請將活動清單建立為CSV格式，並依照所設定格式建立活動清單，將檔案寄至下列email：mobile@cc.ncu.edu.tw，由計中審核通過後即會將您的活動新增至NCUCC Calendar。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4sp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="CSV格式：\n活動名稱,活動連結,活動摘要,活動描述,活動地點,類別,開始時間,結束時間"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4sp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="CSV範例：\n校慶,http://www.ncu.edu.tw,中大104年校慶,中央大學104學年度校慶運動會,操場,校曆,20150606,20150609"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4sp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+    </LinearLayout>
+</ScrollView><!-- From: file:/C:/Users/KangJhe/AndroidStudioProjects/NCUCalendar/app/src/main/res/layout/fragment_patch.xml -->

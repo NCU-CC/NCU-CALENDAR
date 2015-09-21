@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+        <TableRow>
+            <TextView
+                android:text="活動名稱"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/title_text"
+                android:hint="活動名稱"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="6" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="活動日期"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/event_date"
+                android:hint="2015-01-01"
+                android:focusable="false"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="6" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="開始時間"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/time_begin"
+                android:hint="00:00"
+                android:focusable="false"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <TextView
+                android:text="結束時間"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/time_end"
+                android:hint="24:00"
+                android:focusable="false"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="活動地點"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/location"
+                android:hint="活動地點"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="6" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="活動介紹"
+                android:layout_height="160sp"
+                android:layout_gravity="center_vertical"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/description"
+                android:hint="詳細的活動介紹"
+                android:layout_height="160sp"
+                android:layout_gravity="top"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="6" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="活動連結"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="2" />
+
+            <EditText
+                android:id="@+id/link"
+                android:hint="http://活動網址 或 不填寫"
+                android:background="#AAAAAA"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="6" />
+        </TableRow>
+        <TableRow>
+            <Spinner
+                android:layout_height="match_parent"
+                android:id="@+id/category"
+                android:layout_span="4"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/cancel_item"
+                android:text="取消"
+                android:onClick="onSubmit"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="4" />
+
+            <Button
+                android:id="@+id/ok_item"
+                android:text="確定"
+                android:onClick="onSubmit"
+                android:padding="6sp"
+                android:layout_margin="2sp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="4" />
+        </TableRow>
+    </TableLayout>
+</ScrollView>
