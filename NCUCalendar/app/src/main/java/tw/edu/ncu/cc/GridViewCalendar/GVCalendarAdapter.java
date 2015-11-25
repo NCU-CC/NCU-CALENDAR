@@ -56,15 +56,16 @@ public class GVCalendarAdapter extends BaseAdapter {
             viewHolder.linearLayout.setBackgroundColor(0xffcccccc);
         }
         else{
+            if(items.get(position).isToday()){
+                viewHolder.dateTextView.setTextColor(0xff000000);
+                viewHolder.dateTextView.setBackgroundColor(0xfffffd87);
+            }
             if(items.get(position).isHasPlan()){
+                viewHolder.dateTextView.setBackgroundColor(0xff59dbe0);
             }
             if(items.get(position).getDayOfWeek() == Calendar.SUNDAY
                     || items.get(position).getDayOfWeek() == Calendar.SATURDAY){
                 viewHolder.dateTextView.setTextColor(0xffe33125);
-            }
-            if(items.get(position).isToday()){
-                viewHolder.dateTextView.setTextColor(0xff000000);
-                viewHolder.dateTextView.setBackgroundColor(0xfffffd87);
             }
         }
         return convertView;

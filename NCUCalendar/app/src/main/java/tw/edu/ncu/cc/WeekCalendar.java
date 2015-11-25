@@ -57,8 +57,8 @@ public class WeekCalendar extends Fragment implements WeekView.MonthChangeListen
     public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         List<WeekViewEvent> a = new ArrayList<WeekViewEvent>();
         Calendar c = Calendar.getInstance();
-        if(newMonth == c.get(Calendar.MONTH) + 1) {
-            if(eventslist!=null){
+        if(eventslist!=null){
+            if(newMonth == c.get(Calendar.MONTH) + 1){
                 return eventslist;
             }
         }

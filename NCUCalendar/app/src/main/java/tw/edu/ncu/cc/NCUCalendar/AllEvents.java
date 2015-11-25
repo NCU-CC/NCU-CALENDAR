@@ -1,7 +1,7 @@
 package tw.edu.ncu.cc.NCUCalendar;
 
 public class AllEvents {
-    private int count = 50;
+    private int count = 100;
     private int page = 1;
 
     private Events[] events;

@@ -67,6 +67,13 @@ public class GVCalendarItem {
         this.isLastOrNextMonth = isLastOrNextMonth;
     }
 
+    public boolean isHasMark() {
+        return hasMark;
+    }
+    public void setHasMark(boolean hasMark) {
+        this.hasMark = hasMark;
+    }
+
     public boolean isToday() {
         return isToday;
     }

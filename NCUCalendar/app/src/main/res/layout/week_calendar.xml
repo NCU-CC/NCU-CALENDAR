@@ -10,7 +10,7 @@
         app:firstDayOfWeek="sunday"
         app:eventTextSize="8sp"
         app:eventTextColor="@android:color/white"
-        app:textSize="8sp"
+        app:textSize="6dp"
         app:hourHeight="40dp"
         app:headerColumnPadding="8dp"
         app:headerColumnTextColor="#8f000000"

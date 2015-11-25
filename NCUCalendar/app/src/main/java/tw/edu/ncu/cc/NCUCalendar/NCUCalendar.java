@@ -1,7 +1,6 @@
 package tw.edu.ncu.cc.NCUCalendar;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -46,7 +45,7 @@ public class NCUCalendar {
 
     public void getAllEvents( ResponseListener< AllEvents > responseListener , String from , String to ) {
         get(
-                "events?from=" + from + "&to=" + to + "&limit=50", responseListener, new TypeToken<AllEvents>() {}
+                "events?from=" + from + "&to=" + to + "&limit=500", responseListener, new TypeToken<AllEvents>() {}
         );
     }
 

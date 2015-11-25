@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,16 +17,18 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import tw.edu.ncu.cc.mTimePickerDialog.mTimePickerDialog;
+import tw.edu.ncu.cc.NCUCalendar.ErrorMessage;
 import tw.edu.ncu.cc.NCUCalendar.Event;
 import tw.edu.ncu.cc.NCUCalendar.NCUCalendar;
 import tw.edu.ncu.cc.NCUCalendar.ResponseListener;
+import tw.edu.ncu.cc.mTimePickerDialog.mTimePickerDialog;
 
 public class EventUpdate extends Activity{
 
@@ -200,29 +201,30 @@ public class EventUpdate extends Activity{
     public void onSubmit(View view) {
         switch (view.getId()) {
             case R.id.ok_item:
+                DataCompleted = true;
                 String titleText = title_text.getText().toString();
                 if (titleText.isEmpty()) {
-                    EventVarified += "缺少活動名稱！\n";
+                    EventVarified += "\n缺少活動名稱！";
                     DataCompleted = false;
                 }
                 String eventDate = event_date.getText().toString();
                 if (eventDate.isEmpty()) {
-                    EventVarified += "缺少活動日期！\n";
+                    EventVarified += "\n缺少活動日期！";
                     DataCompleted = false;
                 }
                 String timeBegin = time_begin.getText().toString();
                 if (timeBegin.isEmpty()) {
-                    EventVarified += "缺少活動開始時間！\n";
+                    EventVarified += "\n缺少活動開始時間！";
                     DataCompleted = false;
                 }
                 String timeEnd = time_end.getText().toString();
                 if (timeEnd.isEmpty()) {
-                    EventVarified += "缺少活動結束時間！\n";
+                    EventVarified += "\n缺少活動結束時間！";
                     DataCompleted = false;
                 }
                 String eventLocation = location.getText().toString();
                 if (eventLocation.isEmpty()) {
-                    EventVarified += "缺少活動地點！\n";
+                    EventVarified += "\n缺少活動地點！";
                     DataCompleted = false;
                 }
                 String eventLink;
@@ -233,11 +235,11 @@ public class EventUpdate extends Activity{
                 }
                 String eventDescription = description.getText().toString();
                 if (eventDescription.isEmpty()) {
-                    EventVarified += "請填寫活動介紹！\n";
+                    EventVarified += "\n請填寫活動介紹！";
                     DataCompleted = false;
                 }
                 if(category == "請選擇活動類別") {
-                    EventVarified += "請選擇活動類別！\n";
+                    EventVarified += "\n請選擇活動類別！";
                     DataCompleted = false;
                 }
 
@@ -277,7 +279,8 @@ public class EventUpdate extends Activity{
                     finish();
                     mainRefrence.getAllEvents();
                 }
-                Toast.makeText(EventUpdate.this, "活動修改失敗！", Toast.LENGTH_SHORT).show();
+                ErrorMessage errorMessage = new Gson().fromJson( new String(error.networkResponse.data), ErrorMessage.class);
+                Toast.makeText(EventUpdate.this, "活動修改失敗！錯誤訊息如下：\n"+errorMessage.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
         }, event);
     }

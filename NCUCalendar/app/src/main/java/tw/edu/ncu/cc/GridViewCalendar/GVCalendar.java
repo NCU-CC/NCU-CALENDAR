@@ -5,11 +5,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
+import com.alamkanak.weekview.WeekViewEvent;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import tw.edu.ncu.cc.MainActivity;
 
 public class GVCalendar extends GridView {
     Context context;
@@ -40,6 +44,9 @@ public class GVCalendar extends GridView {
         return isLoadDone;
     }
 
+    private List<WeekViewEvent> eventslist;
+
+
     public GVCalendar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
@@ -56,6 +63,8 @@ public class GVCalendar extends GridView {
     }
 
     public void initCalendar(){
+        eventslist = new ArrayList<WeekViewEvent>();
+        eventslist = MainActivity.eventslist;
         initCurrentTime();
         initCalendarItems(year, month, day);
         this.adapter = new GVCalendarAdapter(context, items);
@@ -115,7 +124,16 @@ public class GVCalendar extends GridView {
             if(i == day && calToday.get(Calendar.YEAR) == year && calToday.get(Calendar.MONTH) == month - 1){
                 cb.setToday(true);
             }
-            cb.setDayOfWeek(dayForWeek(year+"-"+month+String.format("-%02d", i)));
+            if(eventslist != null){
+                for(WeekViewEvent eachevent : eventslist){
+                    if(eachevent.getStartTime().get(Calendar.YEAR) == year &&
+                            eachevent.getStartTime().get(Calendar.MONTH)+1 == month &&
+                            eachevent.getStartTime().get(Calendar.DAY_OF_MONTH) == i){
+                        cb.setHasPlan(true);
+                    }
+                }
+            }
+            cb.setDayOfWeek(dayForWeek(year + "-" + month + String.format("-%02d", i)));
             items.add(cb);
         }
 
