@@ -39,6 +39,7 @@ public class DayCalendar extends Fragment implements WeekView.MonthChangeListene
         eventslist = new ArrayList<WeekViewEvent>();
         eventslist = MainActivity.eventslist;
     }
+    private boolean EventPrinted = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,11 +65,10 @@ public class DayCalendar extends Fragment implements WeekView.MonthChangeListene
 
     @Override
     public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-
         List<WeekViewEvent> a = new ArrayList<WeekViewEvent>();
-        Calendar c = Calendar.getInstance();
-        if(newMonth == c.get(Calendar.MONTH) + 1) {
-            if(eventslist!=null){
+        if(!EventPrinted) {
+            if(eventslist != null){
+                EventPrinted = true;
                 return eventslist;
             }
         }

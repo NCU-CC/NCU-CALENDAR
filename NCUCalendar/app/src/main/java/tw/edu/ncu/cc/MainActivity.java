@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Stack;
 
 import tw.edu.ncu.cc.NCUCalendar.AllEvents;
 import tw.edu.ncu.cc.NCUCalendar.Categories;
@@ -42,6 +43,7 @@ import tw.edu.ncu.cc.NCUCalendar.NCUCalendar;
 import tw.edu.ncu.cc.NCUCalendar.ResponseListener;
 import tw.edu.ncu.cc.Oauth.AndroidOauthBuilder;
 import tw.edu.ncu.cc.adapter.NavDrawerListAdapter;
+import tw.edu.ncu.cc.model.FragmentItem;
 import tw.edu.ncu.cc.model.NavDrawerItem;
 
 public class MainActivity extends Activity {
@@ -64,10 +66,14 @@ public class MainActivity extends Activity {
 	public static List<WeekViewEvent> eventslist;
 	public static ArrayList<String> ComparedList;
 
+	private Stack<FragmentItem> FragmentStack;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		FragmentStack = new Stack<FragmentItem>();
 
 		CookieSyncManager.createInstance(this);
 		cookieManager = CookieManager.getInstance();
@@ -92,13 +98,13 @@ public class MainActivity extends Activity {
 			});
 			builder.show();
 		} else {
-			EventConfig EventConfig = new EventConfig("http://140.115.3.188/calendar/v1/", getString(R.string.language));
+			EventConfig EventConfig = new EventConfig("", getString(R.string.language));
 
 			AndroidOauthBuilder oauthBuilder = AndroidOauthBuilder.initContext(this)
 					.clientID(getString(R.string.oauth_id))
 					.clientSecret(getString(R.string.oauth_secret))
 					.callback(getString(R.string.callback))
-					.scope("calendar.event.read", "calendar.event.write")
+					.scope("")
 					.fragmentManager(getFragmentManager());
 			OAuthManager oAuthManager = oauthBuilder.build();
 			NCUCalendar = new NCUCalendar(EventConfig, oAuthManager, this);
@@ -145,10 +151,6 @@ public class MainActivity extends Activity {
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		if (savedInstanceState == null) {
-			displayView(0);
-		}
 	}
 
 	private class SlideMenuClickListener implements ListView.OnItemClickListener {
@@ -201,28 +203,38 @@ public class MainActivity extends Activity {
 	}
 
 	public void displayView(int position) {
+		FragmentItem fi = new FragmentItem();
 		switch (position) {
 			case 0:
 				fragment = new DayCalendar();
 				ShowDrawer = true;
+				fi.setFragmentType(0);
+				FragmentStack.push(fi);
 				break;
 			case 1:
 				fragment = new WeekCalendar();
 				ShowDrawer = true;
+				fi.setFragmentType(1);
+				FragmentStack.push(fi);
 				break;
 			case 2:
 				fragment = new MonthlyCalendar();
 				ShowDrawer = true;
+				fi.setFragmentType(2);
+				FragmentStack.push(fi);
 				break;
 			case 3:
 				fragment = new PatchFragment();
 				ShowDrawer = false;
+				fi.setFragmentType(3);
+				FragmentStack.push(fi);
 				break;
 			case 4:
 				fragment = new SystemFragment();
 				ShowDrawer = false;
+				fi.setFragmentType(4);
+				FragmentStack.push(fi);
 				break;
-
 			default:
 				break;
 		}
@@ -235,6 +247,21 @@ public class MainActivity extends Activity {
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if(FragmentStack.isEmpty()){
+			finish();
+		}else{
+			FragmentItem TempFragmentPop = FragmentStack.pop();
+			if (FragmentStack.isEmpty()) {
+				finish();
+			} else {
+				int FragmentPop = FragmentStack.pop().getFragmentType();
+				displayView(FragmentPop);
+			}
 		}
 	}
 
@@ -292,6 +319,9 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onError(VolleyError error) {
+				Toast.makeText(MainActivity.this, "資料載入失敗，請嘗試重新開啟中大行事曆。\n" +
+						"您必須登入，才能使用中大行事曆。", Toast.LENGTH_LONG).show();
+				NCUCalendar.deleteAccessToken();
 			}
 		});
 	}
@@ -303,12 +333,14 @@ public class MainActivity extends Activity {
 		int mYear = c.get(Calendar.YEAR);
 		int mMonth = c.get(Calendar.MONTH) + 1;
 		if (mMonth >= 2 && mMonth <= 6) {
+			sCalendar.set(Calendar.YEAR, mYear - 1);
 			sCalendar.set(Calendar.MONTH, 1);
 			sCalendar.set(Calendar.DAY_OF_MONTH, 1);
 			eCalendar.set(Calendar.YEAR, mYear + 1);
 			eCalendar.set(Calendar.MONTH, 0);
 			eCalendar.set(Calendar.DAY_OF_MONTH, 31);
 		} else {
+			sCalendar.set(Calendar.YEAR, mYear - 1);
 			sCalendar.set(Calendar.MONTH, 6);
 			sCalendar.set(Calendar.DAY_OF_MONTH, 1);
 			eCalendar.set(Calendar.YEAR, mYear + 1);
@@ -343,6 +375,7 @@ public class MainActivity extends Activity {
 					Calendar endTime = Calendar.getInstance();
 					endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(EndTime_HHMM[0]));
 					endTime.set(Calendar.MINUTE, Integer.parseInt(EndTime_HHMM[1]));
+					endTime.set(Calendar.YEAR, Integer.parseInt(EndTime_YYYYMMDD[0]));
 					endTime.set(Calendar.MONTH, Integer.parseInt(EndTime_YYYYMMDD[1]) - 1);
 					endTime.set(Calendar.DAY_OF_MONTH, Integer.parseInt(EndTime_YYYYMMDD[2]));
 
@@ -379,11 +412,14 @@ public class MainActivity extends Activity {
 						eventslist = new ArrayList<WeekViewEvent>();
 						displayView(0);
 					} else {
-						Toast.makeText(MainActivity.this, "活動資料載入失敗！\n請確認您的網路連線穩定，並重新登入再試一次。", Toast.LENGTH_LONG).show();
+						Toast.makeText(MainActivity.this, "資料載入失敗，請嘗試重新開啟中大行事曆。\n" +
+								"您必須登入，才能使用中大行事曆。", Toast.LENGTH_LONG).show();
 						NCUCalendar.deleteAccessToken();
 					}
 				} else {
-					Toast.makeText(MainActivity.this, "伺服器出現錯誤，請重新開啟中大行事曆。", Toast.LENGTH_LONG).show();
+					Toast.makeText(MainActivity.this, "資料載入失敗，請嘗試重新開啟中大行事曆。\n" +
+							"您必須登入，才能使用中大行事曆。", Toast.LENGTH_LONG).show();
+					NCUCalendar.deleteAccessToken();
 				}
 			}
 		}, sdf.format(sCalendar.getTime()), sdf.format(eCalendar.getTime()));
