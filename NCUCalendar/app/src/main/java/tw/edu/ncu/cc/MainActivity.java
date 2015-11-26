@@ -58,14 +58,24 @@ public class MainActivity extends Activity {
 	private NavDrawerListAdapter adapter;
 	private Fragment fragment = null;
 	private boolean ShowDrawer = true;
-
 	private boolean auth = false;
 	private CookieManager cookieManager;
 	public static NCUCalendar NCUCalendar;
 	public static ArrayList<String> CategoryList;
 	public static List<WeekViewEvent> eventslist;
 	public static ArrayList<String> ComparedList;
-
+	public static List<WeekViewEvent> eventslist_Jan;
+	public static List<WeekViewEvent> eventslist_Feb;
+	public static List<WeekViewEvent> eventslist_Mar;
+	public static List<WeekViewEvent> eventslist_Apr;
+	public static List<WeekViewEvent> eventslist_May;
+	public static List<WeekViewEvent> eventslist_Jun;
+	public static List<WeekViewEvent> eventslist_Jul;
+	public static List<WeekViewEvent> eventslist_Aug;
+	public static List<WeekViewEvent> eventslist_Sep;
+	public static List<WeekViewEvent> eventslist_Oct;
+	public static List<WeekViewEvent> eventslist_Nov;
+	public static List<WeekViewEvent> eventslist_Dec;
 	private Stack<FragmentItem> FragmentStack;
 
 	@Override
@@ -354,6 +364,18 @@ public class MainActivity extends Activity {
 				int i = 0;
 				eventslist = new ArrayList<WeekViewEvent>();
 				ComparedList = new ArrayList<String>();
+				eventslist_Jan = new ArrayList<WeekViewEvent>();
+				eventslist_Feb = new ArrayList<WeekViewEvent>();
+				eventslist_Mar = new ArrayList<WeekViewEvent>();
+				eventslist_Apr = new ArrayList<WeekViewEvent>();
+				eventslist_May = new ArrayList<WeekViewEvent>();
+				eventslist_Jun = new ArrayList<WeekViewEvent>();
+				eventslist_Jul = new ArrayList<WeekViewEvent>();
+				eventslist_Aug = new ArrayList<WeekViewEvent>();
+				eventslist_Sep = new ArrayList<WeekViewEvent>();
+				eventslist_Oct = new ArrayList<WeekViewEvent>();
+				eventslist_Nov = new ArrayList<WeekViewEvent>();
+				eventslist_Dec = new ArrayList<WeekViewEvent>();
 				AllEvents.Events[] events = responses.getEvents();
 				for (AllEvents.Events event : events) {
 					ComparedList.add(i, event.getId());
@@ -399,6 +421,46 @@ public class MainActivity extends Activity {
 							break;
 					}
 					eventslist.add(eachevent);
+					switch (Integer.parseInt(StartTime_YYYYMMDD[1])) {
+						case 1:
+							eventslist_Jan.add(eachevent);
+							break;
+						case 2:
+							eventslist_Feb.add(eachevent);
+							break;
+						case 3:
+							eventslist_Mar.add(eachevent);
+							break;
+						case 4:
+							eventslist_Apr.add(eachevent);
+							break;
+						case 5:
+							eventslist_May.add(eachevent);
+							break;
+						case 6:
+							eventslist_Jun.add(eachevent);
+							break;
+						case 7:
+							eventslist_Jul.add(eachevent);
+							break;
+						case 8:
+							eventslist_Aug.add(eachevent);
+							break;
+						case 9:
+							eventslist_Sep.add(eachevent);
+							break;
+						case 10:
+							eventslist_Oct.add(eachevent);
+							break;
+						case 11:
+							eventslist_Nov.add(eachevent);
+							break;
+						case 12:
+							eventslist_Dec.add(eachevent);
+							break;
+						default:
+							break;
+					}
 					i++;
 				}
 				displayView(0);
