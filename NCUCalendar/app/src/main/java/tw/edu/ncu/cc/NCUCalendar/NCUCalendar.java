@@ -3,12 +3,14 @@ package tw.edu.ncu.cc.NCUCalendar;
 import android.content.Context;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.api.client.auth.oauth2.Credential;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wuman.android.auth.OAuthManager;
@@ -33,7 +35,10 @@ public class NCUCalendar {
 
     public void initAccessToken() {
         try {
-            token = oauthManager.authorizeExplicitly( "user", null, null ).getResult().getAccessToken();
+            Credential result = oauthManager.authorizeExplicitly( "user", null, null ).getResult();
+            if (result.getExpiresInSeconds() <= 60)
+                result.refreshToken();
+            token = result.getAccessToken();
         } catch ( IOException e ) {
             throw new RuntimeException( e );
         }
@@ -45,7 +50,7 @@ public class NCUCalendar {
 
     public void getAllEvents( ResponseListener< AllEvents > responseListener , String from , String to ) {
         get(
-                "events?from=" + from + "&to=" + to + "&limit=500", responseListener, new TypeToken<AllEvents>() {}
+                "events?from=" + from + "&to=" + to + "&limit=300", responseListener, new TypeToken<AllEvents>() {}
         );
     }
 
@@ -80,7 +85,7 @@ public class NCUCalendar {
     }
 
     private < T > void get( String path, final ResponseListener< T > responseListener, final TypeToken typeToken ) {
-        queue.add( new StringRequest( Request.Method.GET, baseURL + path,
+        StringRequest getRequest = new StringRequest( Request.Method.GET, baseURL + path,
                 new Response.Listener< String >() {
                     @Override
                     public void onResponse( String response ) {
@@ -100,11 +105,16 @@ public class NCUCalendar {
                 headers.put( "Authorization", "Bearer " + token );
                 return headers;
             }
-        } );
+        };
+        getRequest.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(getRequest);
     }
 
     private < T > void post( String path, final ResponseListener< T > responseListener, final TypeToken typeToken , final Event event ) {
-        queue.add( new StringRequest( Request.Method.POST, baseURL + path,
+        StringRequest postRequest = new StringRequest( Request.Method.POST, baseURL + path,
                 new Response.Listener< String >() {
                     @Override
                     public void onResponse( String response ) {
@@ -138,7 +148,12 @@ public class NCUCalendar {
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }
-        } );
+        } ;
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(postRequest);
     }
 
     private < T > void put( String path, final ResponseListener< T > responseListener, final TypeToken typeToken, final Event UpdateEvent ) {

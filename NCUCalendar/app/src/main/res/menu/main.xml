@@ -1,11 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_refresh"
+        android:icon="@drawable/menuitem_refresh"
+        android:showAsAction="always"
+        android:onClick="clickMenuItem"/>
     <item
         android:id="@+id/menu_eventcreate"
-        android:orderInCategory="100"
+        android:icon="@drawable/menuitem_eventcreate"
         android:showAsAction="always"
-        android:title="@string/menu_eventcreate"
         android:onClick="clickMenuItem" />
 
+    <item
+        android:id="@+id/menu_logout"
+        android:showAsAction="always"
+        android:icon="@drawable/menuitem_logout"
+        android:onClick="clickMenuItem" />
 </menu>

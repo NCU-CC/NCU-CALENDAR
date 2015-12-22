@@ -88,39 +88,105 @@ public class WeekCalendar extends Fragment implements WeekView.MonthChangeListen
 
     @Override
     public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+        List<WeekViewEvent> a = new ArrayList<WeekViewEvent>();
         switch (newMonth) {
             case 1:
-                return eventslist_Jan;
+                if(eventslist_Jan != null) {
+                    return eventslist_Jan;
+                }
+                else{
+                    return a;
+                }
             case 2:
-                return eventslist_Feb;
+                if(eventslist_Feb != null) {
+                    return eventslist_Feb;
+                }
+                else{
+                    return a;
+                }
             case 3:
-                return eventslist_Mar;
+                if(eventslist_Mar != null) {
+                    return eventslist_Mar;
+                }
+                else{
+                    return a;
+                }
             case 4:
-                return eventslist_Apr;
+                if(eventslist_Apr != null) {
+                    return eventslist_Apr;
+                }
+                else{
+                    return a;
+                }
             case 5:
-                return eventslist_May;
+                if(eventslist_May != null) {
+                    return eventslist_May;
+                }
+                else{
+                    return a;
+                }
             case 6:
-                return eventslist_Jun;
+                if(eventslist_Jun != null) {
+                    return eventslist_Jun;
+                }
+                else{
+                    return a;
+                }
             case 7:
-                return eventslist_Jul;
+                if(eventslist_Jul != null) {
+                    return eventslist_Jul;
+                }
+                else{
+                    return a;
+                }
             case 8:
-                return eventslist_Aug;
+                if(eventslist_Aug != null) {
+                    return eventslist_Aug;
+                }
+                else{
+                    return a;
+                }
             case 9:
-                return eventslist_Sep;
+                if(eventslist_Sep != null) {
+                    return eventslist_Sep;
+                }
+                else{
+                    return a;
+                }
             case 10:
-                return eventslist_Oct;
+                if(eventslist_Oct != null) {
+                    return eventslist_Oct;
+                }
+                else{
+                    return a;
+                }
             case 11:
-                return eventslist_Nov;
+                if(eventslist_Nov != null) {
+                    return eventslist_Nov;
+                }
+                else{
+                    return a;
+                }
             case 12:
-                return eventslist_Dec;
+                if(eventslist_Dec != null) {
+                    return eventslist_Dec;
+                }
+                else{
+                    return a;
+                }
             default:
-                return eventslist;
+                if(eventslist != null) {
+                    return eventslist;
+                }
+                else{
+                    return a;
+                }
         }
     }
 
     @Override
-    public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        GetEventDetail(MainActivity.ComparedList.get((int) event.getId()));
+    public void onEventClick(WeekViewEvent event, RectF eventRect){
+            GetEventDetail(MainActivity.ComparedList.get((int) event.getId()));
     }
 
     @Override
@@ -128,30 +194,30 @@ public class WeekCalendar extends Fragment implements WeekView.MonthChangeListen
         Toast.makeText(WeekCalendar.this.getActivity(), event.getName(), Toast.LENGTH_SHORT).show();
     }
 
-    private void GetEventDetail(String EventId){
-        NCUCalendar.getEvent(new ResponseListener<Event>() {
-            public void onResponse(Event responses) {
-                Event event = responses;
-                Intent EventDisplayIntent = new Intent(WeekCalendar.this.getActivity(), EventDisplay.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("EventId", event.getId());
-                bundle.putString("EventCreated_at", event.getCreated_at());
-                bundle.putString("EventUpdated_at", event.getUpdated_at());
-                bundle.putString("EventSummary", event.getSummary());
-                bundle.putString("EventDescription", event.getDescription());
-                bundle.putString("EventLocation", event.getLocation());
-                bundle.putString("EventCategory", event.getCategory());
-                bundle.putString("EventStart", event.getStart());
-                bundle.putString("EventEnd", event.getEnd());
-                bundle.putString("EventLink", event.getLink());
-                EventDisplayIntent.putExtras(bundle);
-                startActivity(EventDisplayIntent);
-            }
+    private void GetEventDetail (String EventId){
+                NCUCalendar.getEvent(new ResponseListener<Event>() {
+                    public void onResponse(Event responses) {
+                        Event event = responses;
+                        Intent EventDisplayIntent = new Intent(WeekCalendar.this.getActivity(), EventDisplay.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("EventId", event.getId());
+                        bundle.putString("EventCreated_at", event.getCreated_at());
+                        bundle.putString("EventUpdated_at", event.getUpdated_at());
+                        bundle.putString("EventSummary", event.getSummary());
+                        bundle.putString("EventDescription", event.getDescription());
+                        bundle.putString("EventLocation", event.getLocation());
+                        bundle.putString("EventCategory", event.getCategory());
+                        bundle.putString("EventStart", event.getStart());
+                        bundle.putString("EventEnd", event.getEnd());
+                        bundle.putString("EventLink", event.getLink());
+                        EventDisplayIntent.putExtras(bundle);
+                        startActivity(EventDisplayIntent);
+                    }
 
-            @Override
-            public void onError(VolleyError error) {
-                Toast.makeText(WeekCalendar.this.getActivity(), "活動資料載入失敗。", Toast.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onError(VolleyError error) {
+                        Toast.makeText(WeekCalendar.this.getActivity(), "活動資料載入失敗。", Toast.LENGTH_SHORT).show();
+                    }
         }, EventId);
     }
 }

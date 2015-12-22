@@ -178,9 +178,18 @@ public class MainActivity extends Activity {
 
 	public void clickMenuItem(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.menu_refresh:
+				getCategories();
+				auth = true;
+				break;
 			case R.id.menu_eventcreate:
 				Intent intent = new Intent(this, EventCreate.class);
 				startActivity(intent);
+				break;
+			case R.id.menu_logout:
+				NCUCalendar.deleteAccessToken();
+				auth = false;
+				new AuthTask().execute();
 				break;
 			default:
 				finish();
@@ -205,9 +214,13 @@ public class MainActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		if (!ShowDrawer) {
+			menu.findItem(R.id.menu_refresh).setVisible(ShowDrawer);
 			menu.findItem(R.id.menu_eventcreate).setVisible(ShowDrawer);
+			menu.findItem(R.id.menu_logout).setVisible(ShowDrawer);
 		} else {
+			menu.findItem(R.id.menu_refresh).setVisible(!drawerOpen);
 			menu.findItem(R.id.menu_eventcreate).setVisible(!drawerOpen);
+			menu.findItem(R.id.menu_logout).setVisible(!drawerOpen);
 		}
 		return super.onPrepareOptionsMenu(menu);
 	}
