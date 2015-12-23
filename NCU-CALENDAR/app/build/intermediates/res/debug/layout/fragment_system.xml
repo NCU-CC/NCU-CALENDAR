@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Application Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="中大行事曆"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:text="Version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="1.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="License"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="MIT License, Copyright by Raquib-ul-Alam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="Repository"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="https://github.com/NCU-CC/NCU-CALENDAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:autoLink="web|email"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="Contributors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="kkk0292813"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="Owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="National Central University, Computer Center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="Url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+        <TextView
+            android:text="https://www.cc.ncu.edu.tw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:autoLink="web|email"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="16sp"/>
+        <TextView
+            android:text="mobile@cc.ncu.edu.tw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:autoLink="web|email"
+            android:layout_gravity="end" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5sp"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+    </LinearLayout>
+</ScrollView>
+<!-- From: file:/D:/Android/AndroidStudioProjects/NCU-CALENDAR/NCU-CALENDAR/app/src/main/res/layout/fragment_system.xml -->

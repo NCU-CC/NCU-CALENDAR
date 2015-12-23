@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_refresh"
+        android:icon="@drawable/menuitem_refresh"
+        android:showAsAction="always"
+        android:onClick="clickMenuItem"/>
+    <item
+        android:id="@+id/menu_eventcreate"
+        android:icon="@drawable/menuitem_eventcreate"
+        android:showAsAction="always"
+        android:onClick="clickMenuItem" />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:showAsAction="always"
+        android:icon="@drawable/menuitem_logout"
+        android:onClick="clickMenuItem" />
+</menu>
+<!-- From: file:/D:/Android/AndroidStudioProjects/NCU-CALENDAR/NCU-CALENDAR/app/src/main/res/menu/main.xml -->

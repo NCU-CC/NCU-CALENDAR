@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">中大行事曆</string>
+    <string name="menu_eventcreate"> + 新增活動 </string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="action_today">Go to today</string>
+    <string name="action_day_view">Day view</string>
+    <string name="action_three_day_view">3 day view</string>
+    <string name="action_week_view">Week view</string>
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >今日模式</item>
+        <item >週曆模式</item>
+        <item >月曆模式</item>
+        <item >批次加入</item>
+        <item >系統說明</item>
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/day</item>
+        <item>@drawable/week</item>
+        <item>@drawable/month</item>
+        <item>@drawable/upload</item>
+        <item>@drawable/system</item>
+    </array>
+    
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_event">EventActivity</string>
+    <string name="title_activity_event__update">Event_Update</string>
+    <string name="title_activity_event_update">修改活動</string>
+    <string name="title_activity_event_display">活動資訊</string>
+    <string name="title_activity_event_create">新增活動</string>
+
+
+    <string name="network_unreachable">無法存取網路</string>
+    <string name="open_network_message">在無網路的環境下，中大行事曆無法讀取行事曆資料。請至設定中開啟您的行動網路或Wi-Fi，以繼續使用中大行事曆。</string>
+    <string name="cancel">取消</string>
+    <string name="network_settings">設定</string>
+    <string name="language">zh-TW</string>
+
+    <string name="delete">刪除</string>
+    <string name="delete_check">您確定要刪除本活動嗎？</string>
+    <string name="ok">確定</string>
+
+</resources>
