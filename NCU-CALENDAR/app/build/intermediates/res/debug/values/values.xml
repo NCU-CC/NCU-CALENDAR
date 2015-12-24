@@ -190,14 +190,6 @@
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/D:/Android/AndroidStudioProjects/NCU-CALENDAR/NCU-CALENDAR/app/src/main/res/values/secret.xml -->
-    <eat-comment/>
-    <string name="NCU_OAuth_API_Token">73314476e29f15949ca74df004893af51ada19566becf28359aa7372915d46d0cce38b6d0e5fec4b18aa5ad9dd3b4f1938fd084b759dd2c0541ce6f186b22824</string>
-    <string name="NCU_OAuth_Call_Back">calendar://auth</string>
-    <string name="NCU_OAuth_Client_ID">YWY0YTM5MWMtMDRjNy00MjczLWFlYzgtZjY1MmYzOWE4NjYx</string>
-    <string name="NCU_OAuth_Client_Secret">9545cd2f05e3d69e31ae3b44541703bad4cfe5804db109b4bbd29d1ea972d03f83da20934900b2892dda3ba301082e7d11d344d19300f338d6f9c7d051f9b0fe</string>
-    <!-- From: file:/D:/Android/AndroidStudioProjects/NCU-CALENDAR/NCU-CALENDAR/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml -->
-    <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
